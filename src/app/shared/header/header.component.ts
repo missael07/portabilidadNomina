@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// import { lanjuage } from 'src/app/helpers/languaje';
+import { lanjuage } from 'src/app/helpers/languaje';
 
 import { User } from '../../models/user.model';
 import { UsersService } from 'src/app/services/users.service';
@@ -12,7 +12,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class HeaderComponent implements OnInit {
   showMx = localStorage.getItem('lan') === 'ES' ? true : false;
-  // idiom = new lanjuage();
+  idiom = new lanjuage();
 
   public user: User;
   google? = false;
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   logOut() {
-    // this.us.logOut();
+    this.userService.logOut();
   }
 
   changeLanguaje(lan: string) {
