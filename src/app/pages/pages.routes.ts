@@ -8,7 +8,7 @@ import { PagesComponent } from './pages.component';
 // import { AccountSettingsComponent } from './account-settings/account-settings.component';
 // import { PromisesComponent } from './promises/promises.component';
 // import { RxjsComponent } from './rxjs/rxjs.component';
-// import { AuthGuard } from '../guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 // import { lanjuage } from 'src/app/helpers/languaje';
 // import { ProfileComponent } from './profile/profile.component';
 // import { UsersComponent } from './settings/users/users.component';
@@ -20,6 +20,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: PagesComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Resumen',
       pageComing: 'Profile',

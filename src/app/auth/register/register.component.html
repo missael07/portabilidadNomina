@@ -1,0 +1,101 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<section id="wrapper" class="login-register login-sidebar"
+    style="background-image:url(../assets/images/background/login-register.jpg);">
+    <div class="login-box card">
+        <div class="card-body">
+            <form class="form-horizontal form-material" id="loginform" (ngSubmit)="registerUser()" autocomplete="off"
+                [formGroup]="registerForm">
+
+                <a href="javascript:void(0)" class="text-center db"><img src="../assets/images/logo-icon.png"
+                        alt="Home" /><br /><img src="../assets/images/logo-text.png" alt="Home" /></a>
+                <h3 class="box-title m-t-40 m-b-0">{{ idiom.registerTitle }} </h3>
+                <small class="fa">{{ idiom.registerSubtitle}}</small>
+                <div class="form-group m-t-20">
+                    <div class="col-xs-12">
+                        <input class="form-control fa" type="text" [placeholder]=idiom.nameField formControlName="name">
+                        <small class="text-danger fa">
+                            <p *ngIf="!registerForm.get('name')?.value && formSubmitted">{{idiom.nameError}}</p>
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input class="form-control fa" type="text" [placeholder]=idiom.emailField
+                            formControlName="email">
+                        <small class="text-danger fa">
+                            <p *ngIf="!registerForm.get('email')?.value && formSubmitted">{{ idiom.emailError }}</p>
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <div class="input-group mb3">
+                            <input class="form-control fa" type="password" [placeholder]=idiom.passwordField
+                                formControlName="password" *ngIf="!showPassword">
+                            <input class="form-control fa" type="text" [placeholder]=idiom.passwordField
+                                formControlName="password" *ngIf="showPassword">
+                            <button class="btn text-uppercase btn-rounded waves-effect waves-light fa" type="button"
+                                (click)="showPassword = !showPassword"
+                                style="top:1px; right:1px; bottom: 1px; z-index : 9999; height: 59%; background-color: transparent; box-shadow: none !important;">
+                                <i class="fa fa-eye mt5"
+                                    [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+                            </button>
+                        </div>
+                        <small class="text-danger">
+                            <p *ngIf="!registerForm.get('password')?.value && formSubmitted">{{ idiom.passwordError }}
+                            </p>
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="input-group mb3">
+                            <input class="form-control fa" type="password" [placeholder]=idiom.passwordField
+                                formControlName="password2" *ngIf="!showPassword2">
+                            <input class="form-control fa" type="text" [placeholder]=idiom.passwordField
+                                formControlName="password2" *ngIf="showPassword2">
+                            <button class="btn text-uppercase btn-rounded waves-effect waves-light fa" type="button"
+                                (click)="showPassword2 = !showPassword2"
+                                style="top:1px; right:1px; bottom: 1px; z-index : 9999; height: 59%; background-color: transparent; box-shadow: none !important;">
+                                <i class="fa fa-eye mt5"
+                                    [ngClass]="{'fa-eye': showPassword2, 'fa-eye-slash': !showPassword2}"></i>
+                            </button>
+                        </div>
+                        <small class="text-danger fa">
+                            <p *ngIf="!registerForm.get('password2')?.value && formSubmitted">{{
+                                idiom.confirmPasswordError }}</p>
+                            <p *ngIf="!validatePasswords()">{{ idiom.passwordsError }}</p>
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="checkbox checkbox-primary p-t-0 fa">
+                            <input id="checkbox-signup" type="checkbox" formControlName="terms">
+                            <label for="checkbox-signup"><a href="#">{{ idiom.termsField }}</a></label>
+                            <small class="text-danger fa">
+                                <p *ngIf="!registerForm.get('terms')?.value && formSubmitted">{{idiom.termsError}}</p>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center m-t-20">
+                    <div class="col-xs-12">
+                        <app-button [title]=idiom.signUp classBtn="fa-user-o"></app-button>
+                    </div>
+                </div>
+                <div class="form-group m-b-0 m-t-20 ">
+                    <div class="col-sm-12 center fa">
+                        <p>{{ idiom.hveAccount}} <a routerLink="/login" class="text-info m-l-5 fa"><b>{{ idiom.signIn
+                                    }}</b></a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
