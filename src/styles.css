@@ -1,1 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
+.fast {
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+#themecolors .selector,
+.cursor {
+    cursor: pointer;
+}
+
+.center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.img {
+    width: 30px !important;
+    height: 30px;
+}
+
+.ddl-img {
+    width: 70px !important;
+    height: 70px;
+}
+
+.input-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+}
+
+.choose-img {
+    margin-bottom: 2px;
+    margin-top: 5px;
+}
+
+.w100 {
+    width: 100px;
+}
+
+.shadow {
+    box-shadow: 16px 15px 5px grey !important;
+    border-radius: 10px !important;
+}
+
+.avatar {
+    width: 85%;
+    border-radius: 100%;
+}
+
+.vertical-center {
+    vertical-align: middle !important;
+}
+
+.iconButton {
+    border: none;
+    background-color: transparent;
+    box-shadow: none !important;
+}
+
+.w140 {
+    width: 140px;
+}
