@@ -19,7 +19,7 @@ let URL = environment.base_url;
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UsersService {
   public user: User;
   constructor(
     private http: HttpClient,
