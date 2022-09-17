@@ -1,13 +1,191 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>PortabilidadNomina</title>
+  <title>Servicios Trabajadores</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon.png">
+
+<!-- Bootstrap Core CSS -->
+<link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="./assets/css/style.css" rel="stylesheet">
+<link href="../assets/plugins/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+
+<!-- You can change the theme colors from here -->
+<link id="theme" rel="stylesheet">
+
 </head>
-<body>
+<body class="fix-header card-no-border fix-sidebar">
+
+  <!-- ============================================================== -->
+  <!-- Preloader - style you can find in spinners.css -->
+  <!-- ============================================================== -->
+  <div class="preloader">
+    <div class="loader">
+      <div class="loader__figure"></div>
+      <p class="loader__label">Servicios Trabajadores</p>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- Main wrapper - style you can find in pages.scss -->
+  <!-- ============================================================== -->
+
   <app-root></app-root>
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="./assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="./assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="./assets/js/perfect-scrollbar.jquery.min.js"></script>
+<!--Wave Effects -->
+<script src="./assets/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="./assets/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="./assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="./assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+<!--Custom JavaScript -->
+<script src="./assets/js/custom.js"></script>
+<!-- ============================================================== -->
+<!-- chart js-->
+<!-- ============================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="../assets/plugins/moment/moment.js"></script>
+<script type="text/javascript"
+  src="../assets/plugins/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<script type="text/javascript">
+  $(function () {
+    //editables 
+    $('#username').editable({
+      type: 'text',
+      pk: 1,
+      name: 'username',
+      title: 'Enter username'
+    });
+
+    $('#firstname').editable({
+      validate: function (value) {
+        if ($.trim(value) == '') return 'This field is required';
+      }
+    });
+
+    $('#sex').editable({
+      prepend: "not selected",
+      source: [{
+        value: 1,
+        text: 'Male'
+      }, {
+        value: 2,
+        text: 'Female'
+      }],
+      display: function (value, sourceData) {
+        var colors = {
+          "": "#98a6ad",
+          1: "#5fbeaa",
+          2: "#5d9cec"
+        },
+          elem = $.grep(sourceData, function (o) {
+            return o.value == value;
+          });
+
+        if (elem.length) {
+          $(this).text(elem[0].text).css("color", colors[value]);
+        } else {
+          $(this).empty();
+        }
+      }
+    });
+
+    $('#status').editable();
+
+    $('#group').editable({
+      showbuttons: false
+    });
+
+    $('#dob').editable();
+
+    $('#comments').editable({
+      showbuttons: 'bottom'
+    });
+
+    //inline
+
+
+    $('#inline-username').editable({
+      type: 'text',
+      pk: 1,
+      name: 'username',
+      title: 'Enter username',
+      mode: 'inline'
+    });
+
+    $('#inline-firstname').editable({
+      validate: function (value) {
+        if ($.trim(value) == '') return 'This field is required';
+      },
+      mode: 'inline'
+    });
+
+    $('#inline-sex').editable({
+      prepend: "not selected",
+      mode: 'inline',
+      source: [{
+        value: 1,
+        text: 'Male'
+      }, {
+        value: 2,
+        text: 'Female'
+      }],
+      display: function (value, sourceData) {
+        var colors = {
+          "": "#98a6ad",
+          1: "#5fbeaa",
+          2: "#5d9cec"
+        },
+          elem = $.grep(sourceData, function (o) {
+            return o.value == value;
+          });
+
+        if (elem.length) {
+          $(this).text(elem[0].text).css("color", colors[value]);
+        } else {
+          $(this).empty();
+        }
+      }
+    });
+
+    $('#inline-status').editable({
+      mode: 'inline'
+    });
+
+    $('#inline-group').editable({
+      showbuttons: false,
+      mode: 'inline'
+    });
+
+    $('#inline-dob').editable({
+      mode: 'inline'
+    });
+
+    $('#inline-comments').editable({
+      showbuttons: 'bottom',
+      mode: 'inline'
+    });
+
+
+
+  });
+</script>
 </body>
+
 </html>

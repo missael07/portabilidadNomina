@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { PagesComponent } from './pages.component';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [PagesComponent],
+  imports: [CommonModule, RouterModule, SharedModule],
+  exports: [PagesComponent],
 })
-export class PagesModule { }
+export class PagesModule {}
