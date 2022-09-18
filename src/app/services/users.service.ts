@@ -26,7 +26,7 @@ export class UsersService {
     private router: Router,
     private ngZone: NgZone
   ) {
-    this.user = new User('', '', '', '', '', false, '', '');
+    this.user = new User('', '', '', true, '', false, '', '');
   }
 
   get token(): string {

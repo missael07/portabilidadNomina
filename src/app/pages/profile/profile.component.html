@@ -1,0 +1,257 @@
+<div class="row" *ngIf="userFilled">
+    <!-- Column -->
+    <div class="col-lg-4 col-xlg-3 col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <img [src]="user.imageURL" alt="" class="input-img cursor" (click)="change()" *ngIf="!imgTemp">
+                    <img [src]="imgTemp" alt="" class="input-img" *ngIf="imgTemp" (click)="change()">
+                    <input type="file" id="imgInput" class="choose-img" (change)="changeImage($event)" hidden>
+                </div>
+                <div class="text-center mt-2">
+                    <button class="btn btn-circle btn-secondary mr-1"><i class="fa fa-facebook"></i></button>
+                    <button class="btn btn-circle btn-secondary mr-1"><i class="fa fa-twitter"></i></button>
+                    <button class="btn btn-circle btn-secondary"><i class="fa fa-linkedin"></i></button>
+                </div>
+            </div>
+            <!-- <div>
+                <hr>
+            </div> -->
+            <!-- <div class="card-body"> <small class="text-muted">Email address </small>
+                <h6>hannagover@gmail.com</h6> <small class="text-muted p-t-30 db">Phone</small>
+                <h6>+91 654 784 547</h6> <small class="text-muted p-t-30 db">Address</small>
+                <h6>71 Pilgrim Avenue Chevy Chase, MD 20815</h6>
+                <div class="map-box">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d470029.1604841957!2d72.29955005258641!3d23.019996818380896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C+Gujarat!5e0!3m2!1sen!2sin!4v1493204785508"
+                        width="100%" height="150" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                </div> <small class="text-muted p-t-30 db">Social Profile</small>
+                <br>
+            </div> -->
+
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs profile-tab" role="tablist">
+                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#profile" role="tab"
+                        aria-expanded="true">{{ idiom.profile }}</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab"
+                        aria-expanded="false">{{ idiom.settingsTitle }}</a> </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+                <!--Profile-->
+                <div class="tab-pane active" id="profile" role="tabpanel" aria-expanded="true">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 col-xs-6 b-r"> <strong>{{ idiom.nameField }}</strong>
+                                <br>
+                                <p class="text-muted">{{ user.name }}</p>
+                            </div>
+                            <div class="col-md-5 col-xs-6 b-r"> <strong>{{ idiom.emailField }}</strong>
+                                <br>
+                                <p class="text-muted">{{ user.email }}</p>
+                            </div>
+                            <div class="col-md-2 col-xs-6 b-r w100"> <strong>{{ idiom.role }}</strong>
+                                <br>
+                                <div>
+                                    <span class="label"
+                                        [ngClass]="{'label-danger': user.role == 'ADMIN',
+                                                                                    'label-success': user.role == 'USER_ROLE',
+                                                                                    'label-warning': user.role == 'READONLY'}">
+                                        {{ user.role }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-xs-6"> <strong>Auth By</strong>
+                                <br>
+                                <div *ngIf="user.google">
+                                    <p>
+                                        Google
+                                    </p>
+                                </div>
+                                <div *ngIf="!user.google">
+                                    <span>
+                                        <img src="./assets/images/Capture.jpg" alt="homepage" class="dark-logo" />
+                                        <!-- Light Logo text -->
+                                        <!-- <img src="./assets/images/logo-light-text.png" class="light-logo"
+                                            alt="homepage" /> -->
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="m-t-30">Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim
+                            justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis
+                            pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate
+                            eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                            galley of type and scrambled it to make a type specimen book. It has survived not only five
+                            centuries </p>
+                        <!-- <h4 class="font-medium m-t-30">Skill Set</h4>
+                        <hr>
+                        <h5 class="m-t-30">Wordpress <span class="pull-right">80%</span></h5>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="80" aria-valuemin="0"
+                                aria-valuemax="100" style="width:80%; height:6px;"> <span class="sr-only">50%
+                                    Complete</span> </div>
+                        </div>
+                        <h5 class="m-t-30">HTML 5 <span class="pull-right">90%</span></h5>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0"
+                                aria-valuemax="100" style="width:90%; height:6px;"> <span class="sr-only">50%
+                                    Complete</span> </div>
+                        </div>
+                        <h5 class="m-t-30">jQuery <span class="pull-right">50%</span></h5>
+                        <div class="progress">
+                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+                                aria-valuemax="100" style="width:50%; height:6px;"> <span class="sr-only">50%
+                                    Complete</span> </div>
+                        </div>
+                        <h5 class="m-t-30">Photoshop <span class="pull-right">70%</span></h5>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                aria-valuemax="100" style="width:70%; height:6px;"> <span class="sr-only">50%
+                                    Complete</span> </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="tab-pane" id="settings" role="tabpanel" aria-expanded="false">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form [formGroup]="profileForm" (submit)="updateProfile()" class="form-horizontal">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group  row"
+                                                    [ngClass]="{'has-danger': !profileForm.get('name')?.value && formSubmitted}">
+                                                    <div class="col-md-9">
+                                                        <label for="exampleInputuname">{{ idiom.nameField }}</label>
+                                                        <input type="text" class="form-control" id="exampleInputuname"
+                                                            [placeholder]="idiom.nameField" formControlName="name">
+                                                        <small class="form-control-feedback"
+                                                            [ngClass]="{'form-control-danger': !profileForm.get('name')?.value && formSubmitted}"
+                                                            *ngIf="!profileForm.get('name')?.value && formSubmitted">
+                                                            {{idiom.nameError}}
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group row"
+                                                    [ngClass]="{'has-danger': !profileForm.get('email')?.value && formSubmitted}">
+                                                    <div class="col-md-9">
+                                                        <label for="email">{{ idiom.emailField }}</label>
+                                                        <input type="text" class="form-control" id="email"
+                                                            [placeholder]="idiom.emailField" formControlName="email"
+                                                            [readonly]="user.google">
+                                                        <small class="form-control-feedback"
+                                                            [ngClass]="{'form-control-danger': !profileForm.get('email')?.value && formSubmitted}"
+                                                            *ngIf="!profileForm.get('email')?.value && formSubmitted">
+                                                            {{idiom.emailError}}
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <div class="col-md-9">
+                                                        <label for="role">Sexo</label>
+                                                        <select class="form-control" id="role"
+                                                            (change)="changeRole(user)" formControlName="role">
+                                                            <option [value]="role.name" *ngFor="let role of roles"> {{
+                                                                role.name }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <div class="col-md-9">
+                                                        <label for="role"> B-Day </label>
+                                                        <input type="date" class="form-control"
+                                                            placeholder="dd/mm/yyyy">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <div class="col-md-9">
+                                                        <label for="role">{{ idiom.role }}</label>
+                                                        <select class="form-control" id="role"
+                                                            (change)="changeRole(user)" formControlName="role" *ngIf="">
+                                                            <option [value]="role.name" *ngFor="let role of roles"> {{
+                                                                role.name }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <div class="col-md-9">
+                                                        <div class="checkbox checkbox-primary p-t-0 fa">
+                                                            <input id="checkbox-signup" type="checkbox"
+                                                                formControlName="isActive"
+                                                                (change)="isActive = !isActive">
+                                                            <label for="checkbox-signup"> {{ isActive ? 'Active' :
+                                                                'Inactive' }}
+                                                            </label>
+
+                                                        </div>
+                                                        <br />
+                                                        <label for="auth"> Auth by</label>
+                                                        <div *ngIf="user.google" id="auth">
+                                                            Google
+                                                        </div>
+                                                        <div *ngIf="!user.google" id="auth">
+                                                            <span>
+                                                                <!-- Light Logo text -->
+                                                                <img src="./assets/images/Capture.JPG" alt="homepage"
+                                                                    class="dark-logo" />
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"
+                                        [disabled]="profileForm.invalid">{{
+                                        idiom.submitBtn
+                                        }} <i class="fa fa-save"></i></button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>

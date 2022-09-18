@@ -2,19 +2,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
-// import { DashboardComponent } from './dashboard/dashboard.component';
-// import { ProgressComponent } from './progress/progress.component';
-// import { Grafica1Component } from './grafica1/grafica1.component';
-// import { AccountSettingsComponent } from './account-settings/account-settings.component';
-// import { PromisesComponent } from './promises/promises.component';
-// import { RxjsComponent } from './rxjs/rxjs.component';
+
 import { AuthGuard } from '../guards/auth.guard';
-// import { lanjuage } from 'src/app/helpers/languaje';
-// import { ProfileComponent } from './profile/profile.component';
+import { lanjuage } from 'src/app/helpers/languaje';
+import { ProfileComponent } from './profile/profile.component';
 // import { UsersComponent } from './settings/users/users.component';
 // import { UserprofileComponent } from './settings/users/userprofile/userprofile.component';
+import { PageSettingsComponent } from './page-settings/page-settings.component';
+import { UsersComponent } from './settings/users/users.component';
+import { UserprofileComponent } from './settings/users/userprofile/userprofile.component';
 
-// const idiom = new lanjuage();
+const idiom = new lanjuage();
 // const name = localStorage.getItem('name');
 const routes: Routes = [
   {
@@ -23,11 +21,46 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Resumen',
-      pageComing: 'Profile',
+      pageComing: 'Dashboard',
       path: 'profile',
       currentPage: 'Resumen',
-      pathFather: 'profile',
     },
+    children: [
+      //#region Profile
+      {
+        path: 'app-settings',
+        component: PageSettingsComponent,
+        data: {
+          title: idiom.accountSettings,
+          pageComing: idiom.profile,
+          path: 'profile',
+          currentPage: idiom.accountSettings,
+          pathFather: 'profile',
+        },
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: {
+          title: idiom.profile,
+          pageComing: idiom.profile,
+          currentPage: idiom.editProfile,
+        },
+      },
+      //#region Settings
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: {
+          title: idiom.users,
+          pageComing: idiom.settingsTitle,
+          currentPage: idiom.users,
+          path: 'profile',
+        },
+      },
+      { path: 'user-profile', component: UserprofileComponent },
+      //#endregion Settings
+    ],
   },
 ];
 
