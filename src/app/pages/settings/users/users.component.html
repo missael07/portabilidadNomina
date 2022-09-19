@@ -13,10 +13,8 @@
 <div class="row">
     <div class="col-12">
         <div class="card shadow">
-            <div class="card-body animated fadeIn">
-                <h4 class="card-title">{{ idiom.users }}</h4>
-                <h6 class="card-subtitle">{{ idiom.usersRegistered }} ({{ countUsers}})</h6>
-                <div class="row row animated fadeIn fast" *ngIf="(users.length < 1) && loading">
+            <div class="card-body animated fadeIn" *ngIf="(users.length < 1) && loading">
+                <div class="row row animated fadeIn fast">
                     <div class="col-12">
                         <div class="alert alert-info text-center">
                             <h4 class="alert-heading">{{ idiom.loading }}</h4>
@@ -24,9 +22,22 @@
                             <p class="mb-0">{{idiom.wait}}</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="table-responsive" *ngIf="!loading">
+            
+            </div>
+            </div>
+            <div class="card-body animated fadeIn" *ngIf="!loading">
+                <button type="button" class="btn btn-circle btn-success pull-right button-shadow" (click)="displayCreateModal()">
+                    <i class="ti-plus text"></i>
+                </button>
+                <h4 class="card-title">
+                    {{ idiom.users }}
+                </h4>
+                <h6 class="card-subtitle">
+                    {{ idiom.usersRegistered }} ({{ countUsers}})
+            
+                </h6>
+                
+                <div class="table-responsive">
                     <table class="table table-bordered table-hover" *ngIf="!displayMobileTable">
                         <thead>
                             <tr>
@@ -43,11 +54,6 @@
                                 <td class="w100  "><img [src]="user.imageURL" class="avatar">
                                 </td>
                                 <td class="vertical-center">
-                                    <!-- <button class="btn waves-effect waves-light fa fa-user iconButton cursor"
-                                        (click)="goUserProfilePage(user.uid || '')"
-                                        *ngIf="user.uid !== userDB.uid && role === 'ADMIN'">
-                                        {{ user.name }}
-                                    </button> -->
                                     <label class="btn waves-effect waves-light fa fa-user iconButton cursor"
                                         (click)="goUserProfilePage(user.uid || '')"
                                         *ngIf="user.uid !== userDB.uid && role === 'ADMIN'"> {{
@@ -114,7 +120,6 @@
                                 class=" fa fa-chevron-right"></i></button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

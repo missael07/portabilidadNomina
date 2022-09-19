@@ -73,7 +73,8 @@ export class UsersService {
   createUser(formData: RegisterForm) {
     return this.http.post(`${URL}users`, formData).pipe(
       tap((resp: any) => {
-        localStorage.setItem('token', resp.token);
+        // localStorage.setItem('token', resp.token);
+        return resp.user;
       })
     );
   }

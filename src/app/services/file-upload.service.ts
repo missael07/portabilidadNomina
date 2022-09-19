@@ -8,13 +8,9 @@ const base_url = environment.base_url;
 export class FileUploadService {
   constructor() {}
 
-  async updatePhoto(
-    file: File,
-    type: 'users' | 'hospitals' | 'doctors',
-    id?: string
-  ) {
+  async updatePhoto(file: File, id?: string) {
     try {
-      const url = `${base_url}upload/${type}/${id}`;
+      const url = `${base_url}upload/${id}`;
       const formData = new FormData();
       formData.append('img', file);
 

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { timeout } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { lanjuage } from '../../../helpers/languaje';
 
@@ -8,58 +7,74 @@ import Swal from 'sweetalert2';
 import { getMEssage, displayAlert } from 'src/app/helpers/get-errors';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { ModalService } from '../../../services/modal.service';
+import { delay, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styles: [],
 })
-export class UsersComponent implements OnInit {
-  idiom = new lanjuage();
-  users: User[] = [];
-  usersTemp: User[] = [];
-  countUsers: number = 0;
-  from: number = 0;
-  loading: boolean = true;
-  noDataFound: boolean = false;
-  userDB: User;
-  displayDDL?: string = '';
-  element: any;
-  role: string = '';
-  roles: any[] = [];
-  impersonate: string = this.idiom.impersonate;
-  displayMobileTable = false;
+export class UsersComponent implements OnInit, OnDestroy {
+  public idiom = new lanjuage();
+  public users: User[] = [];
+  public usersTemp: User[] = [];
+  public countUsers: number = 0;
+  public from: number = 0;
+  public loading: boolean = true;
+  public noDataFound: boolean = false;
+  public userDB: User;
+  public displayDDL?: string = '';
+  public element: any;
+  public role: string = '';
+  public roles: any[] = [];
+  public impersonate: string = this.idiom.impersonate;
+  public displayMobileTable = false;
+
+  public createuserSubs: Subscription;
+
   constructor(
     private usersService: UsersService,
     private searchService: SearchService,
-    private router: Router
+    private router: Router,
+    private modalService: ModalService
   ) {
     this.userDB = usersService.user;
     this.role = usersService.user.role;
     if (this.role !== 'ADMIN') router.navigateByUrl('dashboard');
     this.displayMobileTable = window.screen.width < 1500 ? true : false;
+    this.createuserSubs = new Subscription();
   }
 
   ngOnInit(): void {
     this.loadUsers();
     this.loadRoles();
     this.displayMobileTable = window.screen.width < 1500 ? true : false;
-    console.log(this.displayMobileTable);
-  }
-  loadRoles() {
-    this.usersService.loadRoles().subscribe((resp: any) => {
-      this.roles = resp.roles;
+    this.createuserSubs = this.modalService.newUser.subscribe((resp) => {
+      console.log(resp);
+      this.loadUsers();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.createuserSubs.unsubscribe();
+  }
+
+  loadRoles() {
+    this.usersService
+      .loadRoles()
+      .pipe(delay(100))
+      .subscribe((resp: any) => {
+        this.roles = resp.roles;
+      });
   }
   loadUsers(timeOut: number = 3500) {
     this.usersService.loadUsers(this.from).subscribe(({ total, users }) => {
-      setTimeout(() => {
-        this.users = users;
-        this.usersTemp = users;
-        this.countUsers = total;
-        this.loading = false;
-        this.noDataFound = false;
-      }, timeOut);
+      this.users = users;
+      this.usersTemp = users;
+      this.countUsers = total;
+      this.loading = false;
+      this.noDataFound = false;
     });
   }
 
@@ -165,5 +180,10 @@ export class UsersComponent implements OnInit {
 
   goUserProfilePage(id: string) {
     this.router.navigateByUrl(`dashboard/user-profile?id=${id}`);
+  }
+
+  async displayCreateModal() {
+    await this.modalService.hiddeModalMethod(false);
+    console.log('test');
   }
 }

@@ -58,7 +58,17 @@ const routes: Routes = [
           path: 'profile',
         },
       },
-      { path: 'user-profile', component: UserprofileComponent },
+      {
+        path: 'user-profile',
+        component: UserprofileComponent,
+        data: {
+          title: 'Usuario',
+          pageComing: idiom.users,
+          currentPage: 'Usuario',
+          path: 'profile',
+          pathFather: 'users',
+        },
+      },
       //#endregion Settings
     ],
   },

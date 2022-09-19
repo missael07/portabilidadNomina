@@ -94,7 +94,7 @@ export class ProfileComponent implements OnInit {
     if (this.user.google) {
       displayAlert(this.idiom.warningTitle, this.idiom.warningMessage, 'info');
     } else {
-      this.fu.updatePhoto(this.imgFile, 'users', this.user.uid).then(
+      this.fu.updatePhoto(this.imgFile, this.user.uid).then(
         (img) => {
           this.user.img = img;
           displayAlert(this.idiom.saveTitle, this.idiom.saveMessage, 'success');
