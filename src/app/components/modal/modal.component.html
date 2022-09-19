@@ -1,0 +1,147 @@
+<div class="fondo-modal-imagen animated"
+    [ngClass]="{'oculto': modalService.hiddeModal, 'fadeOut': modalService.hiddeModal, 'fadeIn': !modalService.hiddeModal}">
+    <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+        style="display: block;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content createModal">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel1">Crear Usuario</h4>
+                    <button type="button" class="close" (click)="closeModal()"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img src="../../../assets/images/no-img.jpg" alt="" class=" input-img cursor" (click)="change()"
+                            *ngIf="!imgTemp">
+                        <img [src]="imgTemp" alt="" class="input-img" *ngIf="imgTemp" (click)="change()">
+                        <input type="file" id="imgInput" class="choose-img" (change)="changeImage($event)" hidden>
+                    </div>
+                    <form [formGroup]="createForm" (submit)="createUser()" class="form-horizontal">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group  row"
+                                        [ngClass]="{'has-danger': !createForm.get('name')?.value && formSubmitted}">
+                                        <div class="col-md-9">
+                                            <label for="exampleInputuname">{{ idiom.nameField }}</label>
+                                            <input type="text" class="form-control" id="exampleInputuname"
+                                                [placeholder]="idiom.nameField" formControlName="name">
+                                            <small class="form-control-feedback"
+                                                [ngClass]="{'form-control-danger': !createForm.get('name')?.value && formSubmitted}"
+                                                *ngIf="!createForm.get('name')?.value && formSubmitted">
+                                                {{idiom.nameError}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row"
+                                        [ngClass]="{'has-danger': !createForm.get('email')?.value && formSubmitted}">
+                                        <div class="col-md-9">
+                                            <label for="email">{{ idiom.emailField }}</label>
+                                            <input type="text" class="form-control" id="email"
+                                                [placeholder]="idiom.emailField" formControlName="email">
+                                            <small class="form-control-feedback"
+                                                [ngClass]="{'form-control-danger': !createForm.get('email')?.value && formSubmitted}"
+                                                *ngIf="!createForm.get('email')?.value && formSubmitted">
+                                                {{idiom.emailError}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row"
+                                        [ngClass]="{'has-danger': !createForm.get('gender')?.value && formSubmitted}">
+                                        <div class="col-md-9">
+                                            <label for="role">Sexo</label>
+                                            <select class="form-control" id="role" formControlName="gender"
+                                                placeholder="Seleccione el sexo..">
+                                                <option value="">Seleccione el sexo...
+                                                </option>
+                                                <option value="Femenino"> Femenino
+                                                </option>
+                                                <option value="Masculino"> Masculino
+                                                </option>
+                                            </select>
+                                            <small class="form-control-feedback"
+                                                [ngClass]="{'form-control-danger': !createForm.get('gender')?.value && formSubmitted}"
+                                                *ngIf="!createForm.get('gender')?.value && formSubmitted">
+                                                Sexo Requerido
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div [ngClass]="{'has-danger': !createForm.get('bDay')?.value && formSubmitted}">
+                                        <div class="col-md-9">
+                                            <label for="role"> B-Day </label>
+                                            <input type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                formControlName="bDay">
+                                        </div>
+                                        <small class="form-control-feedback"
+                                            [ngClass]="{'form-control-danger': !createForm.get('bDay')?.value && formSubmitted}"
+                                            *ngIf="!createForm.get('bDay')?.value && formSubmitted">
+                                            Fecha de Nacimiento Requerida
+                                        </small>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row"
+                                        [ngClass]="{'has-danger': !createForm.get('role')?.value && formSubmitted}">
+                                        <div class="col-md-9">
+                                            <label for="role">{{ idiom.role }}</label>
+                                            <select class="form-control" id="role" formControlName="role"
+                                                placeholder="Seleccione un rol..">
+                                                <option value="">Seleccione rol...
+                                                </option>
+                                                <option [value]="role.name" *ngFor="let role of roles"> {{
+                                                    role.name }}
+                                                </option>
+                                            </select>
+                                            <small class="form-control-feedback"
+                                                [ngClass]="{'form-control-danger': !createForm.get('role')?.value && formSubmitted}"
+                                                *ngIf="!createForm.get('role')?.value && formSubmitted">
+                                                Rol Requerido
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row"
+                                        [ngClass]="{'has-danger': !createForm.get('email')?.value && formSubmitted}">
+                                        <div class="col-md-9">
+                                            <div class="checkbox checkbox-primary p-t-0 fa">
+                                                <input id="checkbox-signup" type="checkbox" formControlName="isActive">
+                                                <label for="checkbox-signup"> Activo
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                        (click)="closeModal()">Cancelar</button>
+                    <button type="button" class="btn btn-success waves-effect waves-light m-r-10"
+                        (click)="createUser()">
+                        {{ idiom.submitBtn }} <i class="fa fa-save"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

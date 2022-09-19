@@ -44,9 +44,12 @@
 }
 
 .shadow {
-    box-shadow: 16px 15px 5px grey !important;
-    border-radius: 10px !important;
+    box-shadow: 13px 9px 5px grey !important;
+        border-radius: 10px !important;
 }
+        .button-shadow {
+            box-shadow: 4px 2px 3px grey !important;
+        }
 
 .avatar {
     width: 85%;

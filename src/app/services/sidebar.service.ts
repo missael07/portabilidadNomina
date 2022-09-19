@@ -18,21 +18,27 @@ export class SidebarService {
         title: '',
         icon: '',
         class: 'user-profile',
+        display: true,
         submenu: [
           { title: this.idiom.profile, url: 'profile' },
-          { title: this.idiom.accountSettings, url: 'account-settings' },
+          {
+            title: this.idiom.accountSettings,
+            url: 'app-settings',
+          },
         ],
       },
       {
         title: 'Dashboard',
         icon: 'mdi mdi-gauge',
         class: 'user-profile',
-        submenu: [{ title: 'Main', url: '/' }],
+        display: true,
+        submenu: [{ title: 'Resumen', url: '/' }],
       },
       {
         title: this.idiom.settingsTitle,
         icon: 'mdi mdi-folder-lock-open',
         class: 'user-profile',
+        display: this.user.role === 'ADMIN',
         submenu: [{ title: this.idiom.users, url: 'users' }],
       },
     ];

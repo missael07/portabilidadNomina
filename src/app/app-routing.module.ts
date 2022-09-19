@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Modulos
 
 
-// import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { NotpagefoundComponent } from './notpagefound/notpagefound.component';
 import { AuthRoutingModule } from './auth/auth.routes';
 import { PagesRoutingModule } from './pages/pages.routes';
 
@@ -14,7 +14,7 @@ const routes: Routes = [
   // path: '/medicos' MedicosRouting
   // path: '/compras' ComprasRouting
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  // { path: '**', component: NopagefoundComponent },
+  { path: '**', component: NotpagefoundComponent },
 ];
 
 @NgModule({
