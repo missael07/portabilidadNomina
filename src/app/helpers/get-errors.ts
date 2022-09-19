@@ -60,3 +60,23 @@ export const displayAlert = (
       break;
   }
 };
+
+export const displayResultAlert = (
+  title: string,
+  text: string,
+  confirmMessage: string
+): boolean => {
+  let resultReturned = false;
+  Swal.fire({
+    title: title,
+    text: text,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: confirmMessage,
+  }).then((result) => {
+    resultReturned = result.isConfirmed;
+  });
+  return resultReturned;
+};

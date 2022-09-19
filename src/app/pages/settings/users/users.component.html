@@ -1,0 +1,126 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input type="text" class="form-control" [placeholder]="idiom.search" (keyup)="search(txtSearch.value)"
+                    #txtSearch>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-body animated fadeIn" *ngIf="(users.length < 1) && loading">
+                <div class="row row animated fadeIn fast">
+                    <div class="col-12">
+                        <div class="alert alert-info text-center">
+                            <h4 class="alert-heading">{{ idiom.loading }}</h4>
+                            <i class="fa fa-spin fa-refresh fa-2x "></i>
+                            <p class="mb-0">{{idiom.wait}}</p>
+                        </div>
+                    </div>
+            
+            </div>
+            </div>
+            <div class="card-body animated fadeIn" *ngIf="!loading">
+                <button type="button" class="btn btn-circle btn-success pull-right button-shadow" (click)="displayCreateModal()">
+                    <i class="ti-plus text"></i>
+                </button>
+                <h4 class="card-title">
+                    {{ idiom.users }}
+                </h4>
+                <h6 class="card-subtitle">
+                    {{ idiom.usersRegistered }} ({{ countUsers}})
+            
+                </h6>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" *ngIf="!displayMobileTable">
+                        <thead>
+                            <tr>
+                                <th class="w100"></th>
+                                <th>{{ idiom.nameField }}</th>
+                                <th>{{ idiom.emailField }}</th>
+                                <th class="w100">{{ idiom.role }}</th>
+                                <th class="w100">Auth</th>
+                                <th class="text-nowrap w100" *ngIf="role === 'ADMIN'">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="(users.length > 0)">
+                            <tr *ngFor=" let user of users">
+                                <td class="w100  "><img [src]="user.imageURL" class="avatar">
+                                </td>
+                                <td class="vertical-center">
+                                    <label class="btn waves-effect waves-light fa fa-user iconButton cursor"
+                                        (click)="goUserProfilePage(user.uid || '')"
+                                        *ngIf="user.uid !== userDB.uid && role === 'ADMIN'"> {{
+                                        user.name }} </label>
+                                    <label class="fa fa-user iconButton" *ngIf="user.uid === userDB.uid"> {{
+                                        user.name }} </label>
+
+                                </td>
+                                <td class="vertical-center">{{ user.email }}</td>
+                                <td class="w140 vertical-center">
+                                    <div *ngIf="role === 'ADMIN' && userDB.uid !== user.uid">
+                                        <select class="form-control" [id]="'ddl_' + user.uid" [(ngModel)]="user.role"
+                                            (change)="changeRole(user)" *ngIf="displayDDL === user.uid">
+                                            <option [value]="role.name" *ngFor="let role of roles">
+                                                {{ role.name }}
+                                            </option>
+                                        </select>
+                                        <span (click)="displayDDl( 'rol_' + user.uid , user.uid)"
+                                            *ngIf="element !='rol_' + user.uid " [id]="'rol_' + user.uid"
+                                            class="label cursor" [ngClass]="{'label-danger': user.role == 'ADMIN',
+                                                    'label-success': user.role === 'USER_ROLE',
+                                                    'label-warning': user.role === 'READONLY'}">
+                                            {{ user.role }}
+                                        </span>
+                                    </div>
+                                    <div *ngIf="role !== 'ADMIN' || userDB.uid === user.uid">
+                                        <span class="label" [ngClass]="{'label-danger': user.role == 'ADMIN',
+                                                    'label-success': user.role == 'USER_ROLE',
+                                                    'label-warning': user.role == 'READONLY'}">
+                                            {{ user.role }}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="text-center w100 vertical-center">
+                                    <i class="fa fa-google text-success" *ngIf="user.google"></i>
+                                    <img src="./assets/images/Capture.JPG" alt="homepage" class="dark-logo"
+                                        *ngIf="!user.google" />
+                                </td>
+                                <td class="text-nowrap w100 text-center vertical-center" *ngIf="role === 'ADMIN'">
+                                    <button (click)="impersonateUser(user)"
+                                        class=" btn waves-effect waves-light fa fa-user iconButton cursor"
+                                        *ngIf="user.uid !== userDB.uid && role === 'ADMIN' " data-toggle="tooltip"
+                                        data-placement="top" [title]="impersonate + user.name"></button>
+                                    <button (click)="deleteUser(user)"
+                                        class=" btn waves-effect waves-light fa fa-close text-danger iconButton cursor"
+                                        *ngIf="user.uid !== userDB.uid"></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="(users.length === 0) && !loading">
+                            <tr>
+                                <td colspan="6">{{ idiom.noDataFound }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="fa-pull-left" *ngIf="txtSearch.value.length === 0">
+                        <button class="btn btn-secondary" (click)="changePage(-5)" [disabled]="from == 0"><i
+                                class="fa fa-chevron-left"></i></button>
+                    </div>
+
+                    <div class="fa-pull-right" *ngIf="txtSearch.value.length === 0">
+                        <button class="btn btn-secondary fa-pull-left" (click)="changePage(5)"
+                            [disabled]="((from + 5) > countUsers) || ((countUsers - 5) == from)"><i
+                                class=" fa fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

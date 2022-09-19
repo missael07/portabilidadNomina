@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '../components/components.module';
+
+import { PagesComponent } from './pages.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './settings/users/users.component';
+import { UserprofileComponent } from './settings/users/userprofile/userprofile.component';
 
 @NgModule({
-  declarations: [PagesComponent],
+  declarations: [PagesComponent, ProfileComponent, UsersComponent, UserprofileComponent],
+  exports: [PagesComponent, ProfileComponent],
   imports: [
     CommonModule,
-    RouterModule,
+    FormsModule,
+    ComponentsModule,
     SharedModule,
-    HttpClientModule,
+    RouterModule,
     ReactiveFormsModule,
   ],
-  exports: [PagesComponent],
 })
 export class PagesModule {}
