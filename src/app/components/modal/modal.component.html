@@ -58,14 +58,14 @@
                                     <div class="form-group row"
                                         [ngClass]="{'has-danger': !createForm.get('gender')?.value && formSubmitted}">
                                         <div class="col-md-9">
-                                            <label for="role">Sexo</label>
-                                            <select class="form-control" id="role" formControlName="gender"
+                                            <label for="gender">Sexo</label>
+                                            <select class="form-control" id="gender" formControlName="gender"
                                                 placeholder="Seleccione el sexo..">
                                                 <option value="">Seleccione el sexo...
                                                 </option>
-                                                <option value="Femenino"> Femenino
+                                                <option value="F"> Femenino
                                                 </option>
-                                                <option value="Masculino"> Masculino
+                                                <option value="M"> Masculino
                                                 </option>
                                             </select>
                                             <small class="form-control-feedback"
@@ -78,17 +78,16 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div [ngClass]="{'has-danger': !createForm.get('bDay')?.value && formSubmitted}">
+                                    <div class="form-group row" [ngClass]="{'has-danger': !createForm.get('bDate')?.value && formSubmitted}">
                                         <div class="col-md-9">
-                                            <label for="role"> B-Day </label>
-                                            <input type="date" class="form-control" placeholder="dd/mm/yyyy"
-                                                formControlName="bDay">
+                                            <label for="date"> Fecha de Nacimiento </label>
+                                            <input type="date" id="date" class="form-control" placeholder="dd/mm/yyyy" formControlName="bDate">
+                                            <small class="form-control-feedback"
+                                                [ngClass]="{'form-control-danger': !createForm.get('bDate')?.value && formSubmitted}"
+                                                *ngIf="!createForm.get('bDate')?.value && formSubmitted">
+                                                Fecha de Nacimiento Requerida
+                                            </small>
                                         </div>
-                                        <small class="form-control-feedback"
-                                            [ngClass]="{'form-control-danger': !createForm.get('bDay')?.value && formSubmitted}"
-                                            *ngIf="!createForm.get('bDay')?.value && formSubmitted">
-                                            Fecha de Nacimiento Requerida
-                                        </small>
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -116,8 +115,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
+                                    <div class="form-group row" [ngClass]="{'has-danger': !createForm.get('role')?.value && formSubmitted}">
+                                        <div class="col-md-9">
+                                            <label for="startDate">Fecha de Ingreso</label>
+                                            <input type="date" class="form-control" id="startDate" formControlName="startDate">
+                                            <small class="form-control-feedback"
+                                                [ngClass]="{'form-control-danger': !createForm.get('email')?.value && formSubmitted}"
+                                                *ngIf="!createForm.get('startDate')?.value && formSubmitted">
+                                                Fecha de ingreso requerida
+                                            </small>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--/span-->
+                                    <!-- <div class="col-md-6">
                                     <div class="form-group row"
                                         [ngClass]="{'has-danger': !createForm.get('email')?.value && formSubmitted}">
                                         <div class="col-md-9">
@@ -128,7 +140,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!--/span-->
                             </div>
                         </div>

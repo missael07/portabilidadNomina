@@ -88,14 +88,14 @@
                                     </div>
                                 </td>
                                 <td class="text-center w100 vertical-center">
-                                    <i class="fa fa-google text-success" *ngIf="user.google"></i>
+                                    <!-- <i class="fa fa-google text-success" ></i> -->
                                     <img src="./assets/images/Capture.JPG" alt="homepage" class="dark-logo"
-                                        *ngIf="!user.google" />
+                                        />
                                 </td>
                                 <td class="text-nowrap w100 text-center vertical-center" *ngIf="role === 'ADMIN'">
                                     <button (click)="impersonateUser(user)"
                                         class=" btn waves-effect waves-light fa fa-user iconButton cursor"
-                                        *ngIf="user.uid !== userDB.uid && role === 'ADMIN' " data-toggle="tooltip"
+                                        *ngIf="user.uid !== userDB.uid && role === 'ADMIN'" data-toggle="tooltip"
                                         data-placement="top" [title]="impersonate + user.name"></button>
                                     <button (click)="deleteUser(user)"
                                         class=" btn waves-effect waves-light fa fa-close text-danger iconButton cursor"

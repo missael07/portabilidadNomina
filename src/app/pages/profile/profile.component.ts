@@ -35,11 +35,17 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.user);
     this.profileForm = this.fb.group({
       name: [this.user.name, Validators.required],
       email: [this.user.email, [Validators.email, Validators.required]],
       isActive: [this.user.isActive],
       role: [this.user.role, [Validators.required]],
+      gender: [this.user.gender, [Validators.required]],
+      bDate: [
+        this.user.bDate,
+        [Validators.required, Validators.pattern('d{2}-d{2}-d{4}')],
+      ],
     });
     this.loadRoles();
   }
@@ -70,12 +76,6 @@ export class ProfileComponent implements OnInit {
   }
 
   changeImage(event: any) {
-    console.log('test');
-    if (this.user.google) {
-      displayAlert(this.idiom.warningTitle, this.idiom.warningMessage, 'info');
-      return;
-    }
-
     this.imgFile = event.target.files[0];
     if (!this.imgFile) return (this.imgTemp = null);
 
@@ -91,29 +91,19 @@ export class ProfileComponent implements OnInit {
   }
 
   uploadImg() {
-    if (this.user.google) {
-      displayAlert(this.idiom.warningTitle, this.idiom.warningMessage, 'info');
-    } else {
-      this.fu.updatePhoto(this.imgFile, this.user.uid).then(
-        (img) => {
-          this.user.img = img;
-          displayAlert(this.idiom.saveTitle, this.idiom.saveMessage, 'success');
-        },
-        (err) => {
-          const msg = getMEssage(err.error.msg);
-          displayAlert('Error', msg, err.status, 'error');
-        }
-      );
-    }
+    this.fu.updatePhoto(this.imgFile, this.user.uid).then(
+      (img) => {
+        this.user.img = img;
+        displayAlert(this.idiom.saveTitle, this.idiom.saveMessage, 'success');
+      },
+      (err) => {
+        const msg = getMEssage(err.error.msg);
+        displayAlert('Error', msg, err.status, 'error');
+      }
+    );
   }
 
   change() {
-    console.log('test');
-
-    if (this.user.google) {
-      displayAlert(this.idiom.warningTitle, this.idiom.warningMessage, 'info');
-      return;
-    }
     const element = document.getElementById('imgInput');
     element?.click();
   }
