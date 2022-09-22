@@ -23,15 +23,15 @@
                         <div class="input-group mb3">
                             <input class="form-control fa" type="password" [placeholder]=idiom.passwordField
                                 formControlName="password" *ngIf="!showPassword">
-                            <input class="form-control fa" type="text" [placeholder]=idiom.passwordField
-                                formControlName="password" *ngIf="showPassword">
-
+                            <!-- <input class="form-control fa" type="text" [placeholder]=idiom.passwordField
+                                                                                                                                                                            formControlName="password" *ngIf="showPassword"> -->
+                            <!-- 
                             <button class="btn waves-effect waves-light iconButton" type="button"
                                 (click)="showPassword = !showPassword"
                                 style="top:1px; right:1px; bottom: 1px; z-index : 9999; height: 59%; background-color: transparent; box-shadow: none !important;">
                                 <i class="fa fa-eye mt5"
-                                    [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
-                            </button>
+                                [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+                                </button> -->
                         </div>
                         <small class="text-danger">
                             <p *ngIf="!loginForm.get('password')?.value && formSubmitted">{{ idiom.passwordError }}</p>
@@ -54,7 +54,7 @@
                         <app-button [title]=idiom.signIn classBtn="fa-sign-in"></app-button>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 ">
                         <div #googleBtn class="fa center"></div>
                     </div>
@@ -64,7 +64,7 @@
                         {{ idiom.dntHveAccount }} <a routerLink="/register" class="text-info m-l-5 fa"><b> {{
                                 idiom.signUp }}</b></a>
                     </div>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>

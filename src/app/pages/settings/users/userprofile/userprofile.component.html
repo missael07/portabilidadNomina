@@ -68,7 +68,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-md-2 col-xs-6"> <strong>Auth By</strong>
+                            <!-- <div class="col-md-2 col-xs-6"> <strong>Auth By</strong>
                                 <br>
                                 <div *ngIf="user.google">
                                     <p>
@@ -77,11 +77,10 @@
                                 </div>
                                 <div *ngIf="!user.google">
                                     <span>
-                                        <!-- Light Logo text -->
                                         <img src="./assets/images/Capture.JPG" alt="homepage" class="dark-logo" />
                                     </span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <hr>
                         <p class="m-t-30">Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim
@@ -152,7 +151,7 @@
                                                         <label for="email">{{ idiom.emailField }}</label>
                                                         <input type="text" class="form-control" id="email"
                                                             [placeholder]="idiom.emailField" formControlName="email"
-                                                            [readonly]="user.google">
+                                                            >
                                                         <small class="form-control-feedback"
                                                             [ngClass]="{'form-control-danger': !profileForm.get('email')?.value && formSubmitted}"
                                                             *ngIf="!profileForm.get('email')?.value && formSubmitted">
@@ -218,18 +217,18 @@
                                                             </label>
 
                                                         </div>
-                                                        <br />
+                                                        <!-- <br />
                                                         <label for="auth"> Auth by</label>
                                                         <div *ngIf="user.google" id="auth">
                                                             Google
                                                         </div>
                                                         <div *ngIf="!user.google" id="auth">
                                                             <span>
-                                                                <!-- Light Logo text -->
+                                                                
                                                                 <img src="./assets/images/Capture.JPG" alt="homepage"
                                                                     class="dark-logo" />
                                                             </span>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>

@@ -165,7 +165,8 @@ export class UsersComponent implements OnInit, OnDestroy {
           this.userDB.img = user.img;
           this.userDB.name = user.name;
           this.userDB.role = user.role;
-          this.userDB.google = user.google;
+          this.userDB.gender = user.gender;
+          this.userDB.bDate = user.bDate;
           this.userDB.uid = user.uid;
 
           // const currentUrl = this.router.url;

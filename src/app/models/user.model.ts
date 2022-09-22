@@ -8,16 +8,14 @@ export class User {
     public email: string,
     public role: string,
     public isActive: boolean,
+    public gender: string,
+    public bDate: string,
     public password?: string,
-    public google?: boolean,
     public img?: string,
     public uid?: string
   ) {}
 
   get imageURL() {
-    if (this.google) {
-      return this.img;
-    }
     if (this.img) {
       return `${base_url}upload/users/${this.img}`;
     }

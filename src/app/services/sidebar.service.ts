@@ -13,6 +13,7 @@ export class SidebarService {
   menu: any;
   constructor(private usersServices: UsersService) {
     this.user = usersServices.user;
+    console.log(this.user);
     this.menu = [
       {
         title: '',
@@ -24,6 +25,10 @@ export class SidebarService {
           {
             title: this.idiom.accountSettings,
             url: 'app-settings',
+          },
+          {
+            title: 'Solicitudes',
+            url: 'requests',
           },
         ],
       },

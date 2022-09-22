@@ -1,0 +1,85 @@
+<!-- <div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input type="text" class="form-control" [placeholder]="idiom.search" (keyup)="search(txtSearch.value)"
+                    #txtSearch>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-body animated fadeIn" *ngIf="(requests.length < 1) && loading">
+                <div class="row row animated fadeIn fast">
+                    <div class="col-12">
+                        <div class="alert alert-info text-center">
+                            <h4 class="alert-heading">{{ idiom.loading }}</h4>
+                            <i class="fa fa-spin fa-refresh fa-2x "></i>
+                            <p class="mb-0">{{idiom.wait}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body animated fadeIn" *ngIf="!loading">
+                <button type="button" class="btn btn-circle btn-success pull-right button-shadow"
+                    (click)="addNewRequest()">
+                    <i class="ti-plus text"></i>
+                </button>
+                <h4 class="card-title">
+                    Solicitudes
+                </h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Solicitante</th>
+                                <th>Fecha de Inicio</th>
+                                <th>Fecha de Termino</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
+                                <th class="text-nowrap">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="(requests.length > 0)">
+                            <tr *ngFor=" let request of requests; let indexOf = index">
+                                <td>{{ indexOf + 1 }}
+                                </td>
+                                <td class="vertical-center">
+                                    {{ request.requester.name }}
+                                </td>
+                                <td class="vertical-center">{{ request.startDate | date: 'longDate' }}</td>
+                                <td class="vertical-center">
+                                    <div>
+                                        {{ request.endDate | date: 'longDate'}}
+                                    </div>
+                                </td>
+                                <td class="text-centervertical-center">
+                                    {{ request.requestType === 'posterior' ? 'Posterior a Ausencia' : 'Previo a
+                                    Ausencia' }}
+                                </td>
+                                <td class="text-centervertical-center">
+                                    {{ request.approved }}
+                                </td>
+                                <td class="text-nowrap text-center vertical-center">
+                                    <button
+                                        class=" btn waves-effect waves-light fa fa-close text-danger iconButton cursor"
+                                        (click)="deleteRequest(request.uid)"></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="(requests.length === 0) && !loading">
+                            <tr>
+                                <td colspan="7" class="text-center">{{ idiom.noDataFound }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,9 +9,11 @@ import { PagesComponent } from './pages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './settings/users/users.component';
 import { UserprofileComponent } from './settings/users/userprofile/userprofile.component';
+import { RequestsComponent } from './requests/requests.component';
+import { CreateRequestsComponent } from './create-requests/create-requests.component';
 
 @NgModule({
-  declarations: [PagesComponent, ProfileComponent, UsersComponent, UserprofileComponent],
+  declarations: [PagesComponent, ProfileComponent, UsersComponent, UserprofileComponent, RequestsComponent, CreateRequestsComponent],
   exports: [PagesComponent, ProfileComponent],
   imports: [
     CommonModule,
