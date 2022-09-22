@@ -1,0 +1,19 @@
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.folio {
+    font-size: 15px;
+    margin-right: 22px;
+    margin-top: 5px;
+}
+
+.card-form {
+    width: 705px;
+}
+
+.requested-time {
+    width: 60%;
+}

@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
   google? = false;
   constructor(private userService: UsersService) {
     this.user = userService.user;
-    this.google = userService.user.google;
   }
 
   ngOnInit(): void {}

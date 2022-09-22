@@ -53,11 +53,11 @@
                                 <br>
                                 <p class="text-muted">{{ user.name }}</p>
                             </div>
-                            <div class="col-md-5 col-xs-6 b-r"> <strong>{{ idiom.emailField }}</strong>
+                            <div class="col-md-6 col-xs-6 b-r"> <strong>{{ idiom.emailField }}</strong>
                                 <br>
                                 <p class="text-muted">{{ user.email }}</p>
                             </div>
-                            <div class="col-md-2 col-xs-6 b-r w100"> <strong>{{ idiom.role }}</strong>
+                            <div class="col-md-3 col-xs-6 w100"> <strong>{{ idiom.role }}</strong>
                                 <br>
                                 <div>
                                     <span class="label"
@@ -68,7 +68,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-md-2 col-xs-6"> <strong>Auth By</strong>
+                            <!-- <div class="col-md-2 col-xs-6"> <strong>Auth By</strong>
                                 <br>
                                 <div *ngIf="user.google">
                                     <p>
@@ -77,10 +77,10 @@
                                 </div>
                                 <div *ngIf="!user.google">
                                     <span>
-                                        <img src="./assets/images/Capture.jpg" alt="homepage" class="dark-logo" />
+                                        <img src="./assets/images/Capture.JPG" alt="homepage" class="dark-logo" />
                                     </span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <hr>
                         <p class="m-t-30">Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim
@@ -151,7 +151,7 @@
                                                         <label for="email">{{ idiom.emailField }}</label>
                                                         <input type="text" class="form-control" id="email"
                                                             [placeholder]="idiom.emailField" formControlName="email"
-                                                            [readonly]="user.google">
+                                                            readonly >
                                                         <small class="form-control-feedback"
                                                             [ngClass]="{'form-control-danger': !profileForm.get('email')?.value && formSubmitted}"
                                                             *ngIf="!profileForm.get('email')?.value && formSubmitted">
@@ -165,26 +165,35 @@
                                         <!--/row-->
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group row">
+                                                <div class="form-group row" [ngClass]="{'has-danger': !profileForm.get('gender')?.value && formSubmitted}">
                                                     <div class="col-md-9">
                                                         <label for="role">Sexo</label>
-                                                        <select class="form-control" id="role"
-                                                            (change)="changeRole(user)" formControlName="role">
-                                                            <option [value]="role.name" *ngFor="let role of roles"> {{
-                                                                role.name }}
+                                                        <select class="form-control" id="role" formControlName="gender" placeholder="Seleccione el sexo.." readonly>
+                                                            <option value="F"> Femenino
+                                                            </option>
+                                                            <option value="M"> Masculino
                                                             </option>
                                                         </select>
+                                                        <small class="form-control-feedback"
+                                                            [ngClass]="{'form-control-danger': !profileForm.get('gender')?.value && formSubmitted}"
+                                                            *ngIf="!profileForm.get('gender')?.value && formSubmitted">
+                                                            Sexo Requerido
+                                                        </small>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-6">
-                                                <div class="form-group row">
+                                                <div [ngClass]="{'has-danger': !profileForm.get('bDate')?.value && formSubmitted}">
                                                     <div class="col-md-9">
                                                         <label for="role"> B-Day </label>
-                                                        <input type="date" class="form-control"
-                                                            placeholder="dd/mm/yyyy">
+                                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy" formControlName="bDate" readonly>
                                                     </div>
+                                                    <small class="form-control-feedback"
+                                                        [ngClass]="{'form-control-danger': !profileForm.get('bDate')?.value && formSubmitted}"
+                                                        *ngIf="!profileForm.get('bDate')?.value && formSubmitted">
+                                                        Fecha de Nacimiento Requerida
+                                                    </small>
                                                 </div>
                                             </div>
                                             <!--/span-->
@@ -192,15 +201,21 @@
                                         <!--/row-->
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group row">
+                                                <div class="form-group row" [ngClass]="{'has-danger': !profileForm.get('role')?.value && formSubmitted}">
                                                     <div class="col-md-9">
                                                         <label for="role">{{ idiom.role }}</label>
-                                                        <select class="form-control" id="role"
-                                                            (change)="changeRole(user)" formControlName="role" *ngIf="">
+                                                        <select class="form-control" id="role" formControlName="role" placeholder="Seleccione un rol.." readonly>
+                                                            <option value="">Seleccione rol...
+                                                            </option>
                                                             <option [value]="role.name" *ngFor="let role of roles"> {{
                                                                 role.name }}
                                                             </option>
                                                         </select>
+                                                        <small class="form-control-feedback"
+                                                            [ngClass]="{'form-control-danger': !profileForm.get('role')?.value && formSubmitted}"
+                                                            *ngIf="!profileForm.get('role')?.value && formSubmitted">
+                                                            Rol Requerido
+                                                        </small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -218,17 +233,16 @@
 
                                                         </div>
                                                         <br />
-                                                        <label for="auth"> Auth by</label>
+                                                        <!-- <label for="auth"> Auth by</label>
                                                         <div *ngIf="user.google" id="auth">
                                                             Google
                                                         </div>
                                                         <div *ngIf="!user.google" id="auth">
                                                             <span>
-                                                                <!-- Light Logo text -->
                                                                 <img src="./assets/images/Capture.JPG" alt="homepage"
                                                                     class="dark-logo" />
                                                             </span>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>

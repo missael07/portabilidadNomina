@@ -15,13 +15,16 @@ export class SidebarComponent implements OnInit {
   menuItems: any[] = [];
   idiom = new lanjuage();
   user: User;
+  role: string = '';
   constructor(
     private sidebarService: SidebarService,
     private usersService: UsersService
   ) {
     this.menuItems = sidebarService.menu;
-
     this.user = usersService.user;
+    if (this.user.role !== 'ADMIN') {
+      this.menuItems = this.menuItems.filter((m) => m.title !== 'Settings');
+    }
   }
 
   ngOnInit(): void {}

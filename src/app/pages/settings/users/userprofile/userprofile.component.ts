@@ -94,10 +94,6 @@ export class UserprofileComponent implements OnInit {
   }
 
   change() {
-    if (this.user.google) {
-      displayAlert(this.idiom.warningTitle, this.idiom.warningMessage, 'info');
-      return;
-    }
     const element = document.getElementById('imgInput');
     element?.click();
   }

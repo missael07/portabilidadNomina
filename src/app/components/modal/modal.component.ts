@@ -25,8 +25,10 @@ export class ModalComponent implements OnInit {
     isActive: [true],
     role: ['', [Validators.required]],
     gender: ['', [Validators.required]],
-    bDay: ['', [Validators.required]],
+    bDate: ['', [Validators.required]],
     password: ['abc123456', [Validators.required]],
+    startDate: ['', Validators.required],
+    firstLogin: [true],
   });
   public formSubmitted = false;
   public imgFile: any;

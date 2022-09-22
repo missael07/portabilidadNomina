@@ -12,6 +12,7 @@ import {
   UpdateUser,
   LoadUser,
 } from '../interfaces/appInterfaces.interface';
+import * as moment from 'moment';
 
 declare const google: any;
 let URL = environment.base_url;
@@ -26,7 +27,7 @@ export class UsersService {
     private router: Router,
     private ngZone: NgZone
   ) {
-    this.user = new User('', '', '', true, '', false, '', '');
+    this.user = new User('', '', '', true, '', '', '', '');
   }
 
   get token(): string {
@@ -50,18 +51,35 @@ export class UsersService {
       .pipe(
         map((resp: any) => {
           console.log(resp);
-          const { name, email, role, isActive, password, google, img, uid } =
-            resp.user;
-          this.user = new User(
+          const {
             name,
             email,
             role,
             isActive,
             password,
-            google,
+            gender,
+            bDate,
+            img,
+            uid,
+          } = resp.user;
+
+          const date = new Date(bDate).toLocaleDateString('en-es', {
+            month: 'numeric',
+            day: 'numeric',
+            year: 'numeric',
+          });
+          this.user = new User(
+            name,
+            email,
+            role,
+            isActive,
+            gender,
+            date,
+            password,
             img,
             uid
           );
+          // this.user.bDate =
           localStorage.setItem('token', resp.token);
           localStorage.setItem('name', name);
           return true;
@@ -132,8 +150,9 @@ export class UsersService {
               user.email,
               user.role,
               user.isActive,
+              user.gender,
+              user.bDate,
               '',
-              user.google,
               user.img,
               user.uid
             )
@@ -170,14 +189,25 @@ export class UsersService {
       })
       .pipe(
         map((resp: any) => {
-          const { name, email, google, img, role, isActive, uid } = resp.user;
+          const {
+            name,
+            email,
+            role,
+            isActive,
+            password,
+            gender,
+            bDate,
+            img,
+            uid,
+          } = resp.user;
           const user = new User(
             name,
             email,
             role,
             isActive,
+            gender,
+            bDate,
             '',
-            google,
             img,
             uid
           );
@@ -190,6 +220,10 @@ export class UsersService {
   loadRoles() {
     const url = `${URL}role`;
     return this.http.get(url, this.headers);
+  }
+
+  changePassword(data: any) {
+    return this.http.post(`${URL}users/change-password`, data, this.headers);
   }
 }
 

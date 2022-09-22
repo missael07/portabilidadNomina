@@ -1,0 +1,386 @@
+<div class="row">
+    <div class="col-12 center">
+        <div class="card card-form center">
+            <form [formGroup]="requestForm" (submit)="createRequest()" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-body">
+                        <div *ngIf="displayFirstStep">
+                            <div class="row">
+                                <div class="col-md-8 title">
+                                    <img src="./assets/images/Capture.JPG" alt="homepage"
+                                        class="dark-logo pull-left vertical-center" />
+                                    <p class="text-center pull-right">Solicitud de Permiso</p>
+                                </div>
+                                <div class=" col-md-4">
+                                    <p class="pull-right folio text-danger">
+                                        SP-F-843
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <small class="text-center">
+                                        <p> Presentar solicitud por lo menos <b>dos días habiles previos</b> a la fecha
+                                            en
+                                            que
+                                            desee
+                                            ausentarse. En caso de imprevistos,
+                                            presentar al <b>momento</b>, o bien, durante las siguientes dos jornadas
+                                            laborales
+                                            al
+                                            volver al trabaho.</p>
+                                    </small>
+                                </div>
+                            </div>
+                            <hr class="m-t-0 m-b-20">
+                            <div class="row">
+                                <div class="col-md-6 center ">
+                                    <div class="form-group" [ngClass]=" {'has-danger': !requestForm.get('name')?.value
+                                        && !nextStep}">
+                                        <label class="control-label">Nombre del trabajador</label>
+                                        <div>
+                                            <input type="text" class="form-control" formControlName="name">
+                                        </div>
+                                        <small class="form-control-feedback form-control-danger"
+                                            *ngIf="!requestForm.get('name')?.value && !nextStep">
+                                            Nombre Requerido
+                                        </small>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6 center">
+                                    <div class="form-group" [ngClass]=" {'has-danger': !requestForm.get('requestDate')?.value
+                                        && !nextStep}">
+                                        <label class="control-label">Fecha</label>
+                                        <div>
+                                            <input type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                                formControlName="requestDate">
+                                        </div>
+                                        <small class="form-control-feedback form-control-danger"
+                                            *ngIf="!requestForm.get('requestDate')?.value && !nextStep">
+                                            Fecha Requerida
+                                        </small>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 center">
+                                    <div class="form-group row" [ngClass]=" {'has-danger': !requestForm.get('requestType')?.value
+                                        && !nextStep}">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <label for="role">Permiso Ausencia</label>
+                                                <select class="form-control" id="role" formControlName="requestType">
+                                                    <option value="" selected="true"> Seleccione...
+                                                    </option>
+                                                    <option value="previo">Permiso previo a
+                                                        ausencia
+                                                    </option>
+                                                    <option value="posterior">Permiso posterior a
+                                                        ausencia
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="row text-center">
+                                                <small class="form-control-feedback form-control-danger text-center"
+                                                    *ngIf="!requestForm.get('requestType')?.value && !nextStep">
+                                                    Permiso Ausencia requerido
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button"
+                                        class="pull-right btn btn-success waves-effect waves-light m-r-10"
+                                        (click)="displayStep(2)">
+                                        Siguiente</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="displaySecondStep">
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12 center">
+                                    <p><b>MOTIVO DE AUSENCIA- </b><small class="text-mutted"> Favor de marcar
+                                            solamente
+                                            un motivo de ausencia</small></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 center">
+                                    <div class="form-group row" [ngClass]=" {'has-danger': !requestForm.get('reason')?.value
+                                        && !nextStep}">
+                                        <label for="role">Motivo</label>
+                                        <select class="form-control" id="role" formControlName="reason"
+                                            placeholder="Seleccione el sexo..">
+                                            <option value="" selected="true"> Seleccione motivo de ausencia...
+                                            </option>
+                                            <option value="motivo_laboral"> Motivo laboral
+                                            </option>
+                                            <option value="enfermedad_no_grave"> Enfermedad no grave
+                                            </option>
+                                            <option value="salud_personal"> Asunto mayor de salud
+                                                personal
+                                            </option>
+                                            <option value="Consulta_medica"> Consulta médica
+                                                privada.
+                                            </option>
+                                            <option value="privacion"> Privación de la
+                                                libertad
+                                            </option>
+                                            <option value="motivo_personal"> Motivo personal
+                                            </option>
+                                        </select>
+                                        <small class="form-control-feedback form-control-danger text-center"
+                                            *ngIf="!requestForm.get('reason')?.value && !nextStep">
+                                            Motivo requerido
+                                        </small>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12 center">
+                                    <p><b>TIPO DE AUSENCIA</b>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 center">
+                                    <div class="form-group row" [ngClass]=" {'has-danger': !requestForm.get('type')?.value
+                                        && !nextStep}">
+                                        <label for="role">Tipo Ausencia</label>
+                                        <select class="form-control" id="role" formControlName="type"
+                                            placeholder="Seleccione el sexo..">
+                                            <option value="" selected="true"> Seleccione tipo de ausencia...
+                                            </option>
+                                            <option value="Con_goce"> Con goce de sueldo
+                                            </option>
+                                            <option value="Sin_goce"> Sin goce de sueldo
+                                            </option>
+                                            <option value="reposición_de_horas"> Con goce por
+                                                reposición de horas
+                                            </option>
+                                        </select>
+                                        <small class="form-control-feedback form-control-danger text-center"
+                                            *ngIf="!requestForm.get('type')?.value && !nextStep">
+                                            Tipo de ausencia requerido
+                                        </small>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                            </div>
+                            <!--Buttons-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button"
+                                        class="pull-left btn btn-success waves-effect waves-light m-r-10"
+                                        (click)="backStep(1, 2)">
+                                        Anterior</button>
+                                    <button type="button"
+                                        class="pull-right btn btn-success waves-effect waves-light m-r-10"
+                                        (click)="displayStep(3)">
+                                        Siguiente</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="displayThirdStep">
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <p><b>TIEMPO DE AUSENCIA -</b> <small>
+                                            Escriba el mes abreviado con tres letras. Para permiso
+                                            por horas use la misma fecha en los espacios
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 center">
+                                    <div class="form-group" [ngClass]=" {'has-danger': !requestForm.get('startDate')?.value
+                                        && !nextStep}">
+                                        <label class="control-label">Fecha de inicio <small>Primer día de
+                                                ausencia</small></label>
+                                        <div>
+                                            <input type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                                formControlName="startDate">
+                                        </div>
+                                        <small class="form-control-feedback form-control-danger text-center"
+                                            *ngIf="!requestForm.get('startDate')?.value && !nextStep">
+                                            Fecha de inicio requerida
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 center">
+                                    <div class="form-group" [ngClass]=" {'has-danger': !requestForm.get('endDate')?.value
+                                        && !nextStep}">
+                                        <label class="control-label">Fecha de fin <small>Ultimo día de
+                                                ausencia</small></label>
+                                        <div>
+                                            <input type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                                formControlName="endDate">
+                                        </div>
+                                        <small class="form-control-feedback form-control-danger text-center"
+                                            *ngIf="!requestForm.get('endDate')?.value && !nextStep">
+                                            Fecha de fin requerida
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 center">
+                                    <div class="form-group " [ngClass]=" {'has-danger': !requestForm.get('commingDate')?.value
+                                        && !nextStep}">
+                                        <label class="control-label">Fecha de regreso <small>Se presenta a
+                                                trabajar</small></label>
+                                        <div>
+                                            <input type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                                formControlName="commingDate">
+                                        </div>
+                                        <small class="form-control-feedback form-control-danger text-center"
+                                            *ngIf="!requestForm.get('commingDate')?.value && !nextStep">
+                                            Fecha de regreso requerido
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 center">
+                                    <div class="form-group row " [ngClass]=" {'has-danger': !requestForm.get('requestTime')?.value
+                                        && !nextStep}">
+                                        <div class="col-md-12">
+                                            <label class="control-label">Tiempo solicitado</label>
+                                            <div>
+                                                <input type="text" class="form-control requested-time"
+                                                    formControlName="requestTime">
+                                                &nbsp;
+                                                <span>
+                                                    <div class="checkbox checkbox-primary p-t-0 fa">
+                                                        <input id="checkbox-signup" type="checkbox"
+                                                            formControlName="hours">
+                                                        <label for="checkbox-signup" data-toggle="tooltip"
+                                                            data-placement="top"
+                                                            title="Al marcar esta casilla acepta que solo solicitará horas, por lo contrario se tomara como si solicitara días de permiso.">
+                                                            Horas
+                                                        </label>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                            <small class="form-control-feedback form-control-danger text-center"
+                                                *ngIf="!requestForm.get('requestTime')?.value && !nextStep">
+                                                Tiempo solicitiado requerido
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <small class="text-center m-b-20">
+                                        (Considere que las horas pagadas pueden diferir de las solicitadas. Cada
+                                        día
+                                        es equivalente a 9 hrs)
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button"
+                                        class="pull-left btn btn-success waves-effect waves-light m-r-10"
+                                        (click)="backStep(2, 3)">
+                                        Anterior</button>
+                                    <button type="button"
+                                        class="pull-right btn btn-success waves-effect waves-light m-r-10"
+                                        (click)="displayStep(4)">
+                                        Siguiente</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="displayFourtStep">
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12 center">
+                                    <p><b>Comments - </b><small class="text-mutted">Proporcione información pertinente a
+                                            su
+                                            solicitud.</small>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="3" formControlName="comments"></textarea>
+                                    </div>
+                                    <small class="form-control-feedback form-control-danger text-center"
+                                        *ngIf="!requestForm.get('comments')?.value && !nextStep">
+                                        Tiempo solicitiado requerido
+                                    </small>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="checkbox checkbox-primary p-t-0 fa">
+                                            <input id="checkbox-signup" type="checkbox"
+                                                formControlName="responsabilityAcepted">
+                                            <label for="checkbox-signup">
+                                                Al marcar esta casilla, declaro que he leído, conozco y comprendo el
+                                                contenido del Reglamento Interior de Trabajo en su
+                                                Capítulo Quinto, donde se trata el tema de las faltas, ausencias y
+                                                retardos.
+                                            </label>
+                                            <small>
+                                                Entiendo que debo obtener autorización de la dirección antes de
+                                                ausentarme; el completar este formulario NO constituye
+                                                la aprobación automática de mi solicitud de permiso; y a menos que la
+                                                necesidad de ausencia sea imprevisible, es mi
+                                                responsabilidad discutir este acuerdo con mi supervisor antes de
+                                                solicitar el permiso.
+
+                                            </small>
+                                        </div>
+                                        <small class="form-control-feedback form-control-danger text-center"
+                                            *ngIf="!requestForm.get('responsabilityAcepted')?.value && !nextStep">
+                                            Tiempo solicitiado requerido
+                                        </small>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!-- Action buttons-->
+                            <hr>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="ol-md-offset-3 col-md-4">
+                                                <button type="button" class="btn btn-success pull-left"
+                                                    (click)="backStep(3,4)">Anterior</button>
+                                            </div>
+                                            <div class="ol-md-offset-3 col-md-4">
+                                                <button type="button" class="btn btn-inverse"
+                                                    (click)="cancelRequest()">Cancelar</button>
+                                            </div>
+                                            <div class="ol-md-offset-3 col-md-4">
+
+                                                <button type="submit"
+                                                    class="btn btn-success pull-right">Solicitar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

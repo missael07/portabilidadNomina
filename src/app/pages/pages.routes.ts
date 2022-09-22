@@ -8,6 +8,8 @@ import { lanjuage } from 'src/app/helpers/languaje';
 import { ProfileComponent } from './profile/profile.component';
 // import { UsersComponent } from './settings/users/users.component';
 // import { UserprofileComponent } from './settings/users/userprofile/userprofile.component';
+import { CreateRequestsComponent } from './create-requests/create-requests.component';
+import { RequestsComponent } from './requests/requests.component';
 import { PageSettingsComponent } from './page-settings/page-settings.component';
 import { UsersComponent } from './settings/users/users.component';
 import { UserprofileComponent } from './settings/users/userprofile/userprofile.component';
@@ -45,6 +47,26 @@ const routes: Routes = [
           title: idiom.profile,
           pageComing: idiom.profile,
           currentPage: idiom.editProfile,
+        },
+      },
+      {
+        path: 'requests',
+        component: RequestsComponent,
+        data: {
+          title: 'Solicitudes',
+          pageComing: idiom.profile,
+          currentPage: 'Solicitudes',
+          pathFather: 'profile',
+        },
+      },
+      {
+        path: 'create-request',
+        component: CreateRequestsComponent,
+        data: {
+          title: 'Solicitudes',
+          pageComing: 'Solicitudes',
+          currentPage: 'Crear Solicitud',
+          pathFather: 'requests',
         },
       },
       //#region Settings
